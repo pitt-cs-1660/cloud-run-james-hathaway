@@ -63,7 +63,34 @@
         vote("SPACES");
       });
 
-    })
+      document.getElementById("signInButton").addEventListener("click", signIn);
+      document.getElementById("signOutButton").addEventListener("click", signOut);
+
+      function toggleLoginButtons(isSignedIn)
+      {
+        if (isSignedIn)
+        {
+          document.getElementById("signInButton").classList.add("hide");
+          document.getElementById("signOutButton").classList.remove("hide");
+        }
+        else
+        {
+          document.getElementById("signInButton").classList.remove("hide");
+          document.getElementById("signOutButton").classList.add("hide");      
+        }
+      }
+
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) 
+        {
+          toggleLoginButtons(true);
+        }
+        else
+        {
+          toggleLoginButtons(false);
+        }
+      });
+    });
   </script>
 </body>
 </html>

@@ -21,19 +21,28 @@ async def read_root(request: Request):
     # ====================================
     # ++++ START CODE HERE ++++
     # ====================================
-
     # stream all votes; count tabs / spaces votes, and get recent votes
+    tabs_counter = 0
+    spaces_counter = 0
+    recent_votes = []
+    try:
+        votes = votes_collection.stream() #from firestore
+        for vote in votes:
+            vote_data = vote.to_dict()
 
-    # ====================================
-    # ++++ STOP CODE ++++
-    # ====================================
-    return templates.TemplateResponse("index.html", {
+
+        return templates.TemplateResponse("index.html", {
         "request": request,
         "tabs_count": 0,
         "spaces_count": 0,
         "recent_votes": []
-    })
+        })
 
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    # ====================================
+    # ++++ STOP CODE ++++
+    # ====================================
 
 @app.post("/")
 async def create_vote(team: Annotated[str, Form()]):

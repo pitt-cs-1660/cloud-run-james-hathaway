@@ -56,7 +56,7 @@ async def create_vote(team: Annotated[str, Form()]):
         }
         votes_collection.add(vote)
         # create a new vote document in firestore
-        return {"detail": "Not implemented yet!"}
+        return {"detail": "Created a new vote!"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

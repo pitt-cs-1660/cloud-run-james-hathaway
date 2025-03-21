@@ -122,7 +122,7 @@ async function vote(team) {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
-          "Authorization": 'Bearer ${token}'
+          "Authorization": `Bearer ${token}`
         },
         body: new URLSearchParams({team})
       });

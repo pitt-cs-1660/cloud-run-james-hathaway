@@ -14,7 +14,7 @@
  * @type {{apiKey: string, authDomain: string}}
  */
 
-import { initializeApp } from "firebase/app";
+//import { initializeApp } from "firebase/app";
 const config = {
   apiKey: "AIzaSyD9LaQkHUBpyxYjRxF1fE_8soGVsNeuJh8",
   authDomain: "cloud-run-project-454317.firebaseapp.com",
@@ -23,7 +23,3 @@ const config = {
   messagingSenderId: "164008081777",
   appId: "1:164008081777:web:3a19cb0486b17d71179ed0"
 };
-
-const app = initializeApp(config);
-
-export default config;

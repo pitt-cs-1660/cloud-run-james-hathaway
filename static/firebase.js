@@ -116,6 +116,7 @@ async function vote(team) {
     // refresh the token and return a new one.
     try {
       const token = await createIdToken();
+      console.log(`Token obtained: ${token}`);
       
       //post request here
       let response = await fetch("/", {
@@ -127,10 +128,11 @@ async function vote(team) {
         body: new URLSearchParams({team})
       });
 
+      console.log("Response status: ", response.status); 
       if (!response.ok)
       {
         let errorData = await response.json();
-        console.log("Error when submitting vote");
+        console.log("Error when submitting vote: ", errorData);
         window.alert("Vote submission failed!");
         return;
       }

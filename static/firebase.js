@@ -118,7 +118,7 @@ async function vote(team) {
       const token = await createIdToken();
       
       //post request here
-      response = await fetch("/", {
+      let response = await fetch("/", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -129,7 +129,7 @@ async function vote(team) {
 
       if (!response.ok)
       {
-        errorData = await response.json();
+        let errorData = await response.json();
         console.log("Error when submitting vote");
         window.alert("Vote submission failed!");
         return;

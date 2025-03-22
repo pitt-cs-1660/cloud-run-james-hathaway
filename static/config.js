@@ -14,8 +14,8 @@
  * @type {{apiKey: string, authDomain: string}}
  */
 const config = {
-  apiKey: 'AIzaSyByTo0_tg-ZdGIZFRIFQIsH9ZR917iDdCU',
-  authDomain: 'cloud-run-project-454317.firebaseapp.com',
+  apiKey: "AIzaSyByTo0_tg-ZdGIZFRIFQIsH9ZR917iDdCU",
+  authDomain: "cloud-run-project-454317.firebaseapp.com",
 };
 
 export default config;

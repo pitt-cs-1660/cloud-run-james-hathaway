@@ -54,11 +54,43 @@
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      <!-- add Event Listener "click" to the vote -->
-      // document.getElementById("voteTabs").addEventListener("click", function () {
-      //   vote("TABS");
-      // });
-    })
+      //voting event listeners
+      document.getElementById("voteTabs").addEventListener("click", function () {
+        vote("TABS");
+      });
+
+      document.getElementById("voteSpaces").addEventListener("click", function() {
+        vote("SPACES");
+      });
+
+      document.getElementById("signInButton").addEventListener("click", signIn);
+      document.getElementById("signOutButton").addEventListener("click", signOut);
+
+      function toggleLoginButtons(isSignedIn)
+      {
+        if (isSignedIn)
+        {
+          document.getElementById("signInButton").classList.add("hide");
+          document.getElementById("signOutButton").classList.remove("hide");
+        }
+        else
+        {
+          document.getElementById("signInButton").classList.remove("hide");
+          document.getElementById("signOutButton").classList.add("hide");      
+        }
+      }
+
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) 
+        {
+          toggleLoginButtons(true);
+        }
+        else
+        {
+          toggleLoginButtons(false);
+        }
+      });
+    });
   </script>
 </body>
 </html>

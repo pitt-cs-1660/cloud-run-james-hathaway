@@ -8,6 +8,8 @@
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first-->
   <script src="https://www.gstatic.com/firebasejs/7.18/firebase-app.js"></script>
   <!-- Add Firebase Auth service-->
+  <script src="https://www.gstatic.com/firebasejs/8.0/firebase-auth.js"></script>
+  
   <script src="https://www.gstatic.com/firebasejs/8.0/firebase.js"></script>
   <script src="/static/config.js"></script>
   <script src="/static/firebase.js"></script>
@@ -18,6 +20,7 @@
     <div class="nav-wrapper container"><a class="brand-logo center" href="#!">TABS v SPACES</a>
       <ul class="left" id="nav-mobile">
         <button class="waves-effect waves-light btn" id="signInButton">Sign In with Google</button>
+        <button class="waves-effect waves-light btn hide" id="signOutButton">Sign Out</button>
       </ul>
     </div>
   </nav>
@@ -54,11 +57,43 @@
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      <!-- add Event Listener "click" to the vote -->
-      // document.getElementById("voteTabs").addEventListener("click", function () {
-      //   vote("TABS");
-      // });
-    })
+      //voting event listeners
+      document.getElementById("voteTabs").addEventListener("click", function () {
+        vote("TABS");
+      });
+
+      document.getElementById("voteSpaces").addEventListener("click", function() {
+        vote("SPACES");
+      });
+
+      document.getElementById("signInButton").addEventListener("click", signIn);
+      document.getElementById("signOutButton").addEventListener("click", signOut);
+
+      function toggleLoginButtons(isSignedIn)
+      {
+        if (isSignedIn)
+        {
+          document.getElementById("signInButton").classList.add("hide");
+          document.getElementById("signOutButton").classList.remove("hide");
+        }
+        else
+        {
+          document.getElementById("signInButton").classList.remove("hide");
+          document.getElementById("signOutButton").classList.add("hide");      
+        }
+      }
+
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) 
+        {
+          toggleLoginButtons(true);
+        }
+        else
+        {
+          toggleLoginButtons(false);
+        }
+      });
+    });
   </script>
 </body>
 </html>
